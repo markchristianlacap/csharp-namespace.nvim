@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "KZEM1JhA3lGQiiyy+uyi3hnG9k5ZZRjk8Ld0uL+km6oyCfdpfkOM16Mw8npkCIyfiOnwW0ouzq8nP11oZjaEbA==",
+  "success": true,
+  "projectFilePath": "/home/mark/dev/plugins/cs-namespace.nvim/test/Domains/Domains.csproj",
+  "expectedPackageFiles": [
+    "/home/mark/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.6/microsoft.aspnetcore.app.ref.8.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
