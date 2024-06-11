@@ -13,27 +13,24 @@ end
 
 -- Function to find .csproj files recursively
 function M.find_csproj_files()
-	local csproj_files = {}
-	local start_dir = vim.fn.getcwd() -- Get the current working directory
+	local proj_files = {}
+	-- Get the current working directory
+	local cwd = vim.fn.getcwd()
 
-	-- Recursive function to find .csproj files
-	local function search_dir(dir)
-		local files = vim.fn.readdir(dir)
+	-- Construct the command
+	local command = "find " .. cwd .. " -name '*.csproj' -exec realpath {} \\;"
 
-		for _, file in ipairs(files) do
-			local filepath = dir .. "/" .. file
-			if vim.fn.isdirectory(filepath) == 1 then
-				search_dir(filepath) -- Recursively search directories
-			elseif filepath:match("%.csproj$") then
-				-- Extract the directory path and filename
-				local path = vim.fn.fnamemodify(filepath, ":h")
-				local name = vim.fn.fnamemodify(filepath, ":t")
-				table.insert(csproj_files, { path = path, name = name })
-			end
+	-- Execute the command and capture the output
+	local output = vim.fn.system(command)
+	-- Loop through each line in the output
+	for line in output:gmatch("[^\r\n]+") do
+		-- Extract the directory and filename using Lua's pattern matching
+		local directory, filename = string.match(line, "(.-)/([^/]+)$")
+		if directory and filename then
+			table.insert(proj_files, { path = directory, name = filename })
 		end
 	end
-	search_dir(start_dir) -- Start searching from the current directory
-	return csproj_files
+	return proj_files
 end
 
 function M.starts_with(str, prefix)
