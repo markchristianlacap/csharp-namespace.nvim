@@ -1,1 +1,1 @@
-
+namespace Api.Entities;
