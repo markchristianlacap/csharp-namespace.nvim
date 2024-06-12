@@ -32,6 +32,7 @@ return {
     end,
   },
 }
+```
 
 ## Usage
 
@@ -45,7 +46,6 @@ You can customize the behavior of `csharp-namespace.nvim` by passing options to 
 require("csharp-namespace").setup {
   -- Add your custom configurations here
 }
-```
 
 ## Contributing
 
