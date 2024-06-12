@@ -42,6 +42,10 @@ Once installed, the plugin automatically provides namespace completions for C# f
 
 You can customize the behavior of `csharp-namespace.nvim` by passing options to the `setup` function. Here is an example of the available configuration options and their defaults:
 
+## Notes
+
+This plugin only currently works on Linux and UNIX-based systems where the `find` command is available.
+
 ```lua
 require("csharp-namespace").setup {}
 
