@@ -13,8 +13,7 @@ return {
     ft = "cs",
     dependencies = {
       "hrsh7th/nvim-cmp",
-    },
-    config = function()
+    }, config = function()
       require("csharp-namespace").setup {}
       local cmp = require "cmp"
       local config = cmp.get_config()
@@ -51,7 +50,7 @@ cmp.setup({
 ### Using `blink.cmp`
 ```lua
 {
-    'rafamadriz/friendly-snippets',
+    'saghen/blink.cmp',
     -- add to dependencies
     dependencies = {
       'markchristianlacap/csharp-namespace.nvim',
