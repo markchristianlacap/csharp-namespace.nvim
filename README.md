@@ -2,11 +2,6 @@
 
 `csharp-namespace.nvim` is a Neovim plugin designed to enhance C# development by providing namespace completions. It integrates seamlessly with `nvim-cmp` to offer a better coding experience for C# developers.
 
-## Requirements
-
-- Neovim 0.5 or later
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-
 ## Installation
 
 Using `lazy.nvim` as the plugin manager, add the following configuration to your Neovim setup:
@@ -41,7 +36,7 @@ Once installed, the plugin automatically provides namespace completions for C# f
 ## Configuration
 
 You can customize the behavior of `csharp-namespace.nvim` by passing options to the `setup` function. Here is an example of the available configuration options and their defaults:
-
+### Using `nvim-cmp`
 ```lua
 require("csharp-namespace").setup {}
 
@@ -53,10 +48,32 @@ cmp.setup({
 
 ```
 
-## Notes
-
-This plugin only currently works on Linux and UNIX-based systems where the `find` command is available.
-
+### Using `blink.cmp`
+```lua
+{
+    'rafamadriz/friendly-snippets',
+    -- add to dependencies
+    dependencies = {
+      'markchristianlacap/csharp-namespace.nvim',
+    },
+    opts = {
+        sources = {
+            default = {
+                --  add to sources
+                'csharp_namespace'
+            },
+            -- configure providers
+            providers = {
+              csharp_namespace = {
+                module = "blink-csharp-namespace",
+                name = "C# Namespace",
+                opts = {}
+              },
+            },
+        }
+    }
+}
+``` 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an Issue on GitHub.
@@ -67,7 +84,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgements
 
-Special thanks to the contributors of [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) for their amazing work in providing a powerful completion engine for Neovim.
+Special thanks to the contributors of [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [blink-cmp](https://github.com/Saghen/blink.cmp) for their amazing work in providing a powerful completion engine for Neovim.
 
 ## Contact
 
