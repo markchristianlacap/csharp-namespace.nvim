@@ -1,0 +1,14 @@
+# C# build artifacts
+obj/
+bin/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+
+# Neovim
+*.swp
+*.swo
+*~
