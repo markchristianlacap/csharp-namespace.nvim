@@ -6,7 +6,7 @@ A Neovim plugin that provides intelligent C# namespace autocompletion based on y
 
 - 🚀 Automatic namespace suggestions based on file location and project structure
 - 📁 Scans `.csproj` files to determine the correct namespace
-- 🔧 Works with both `nvim-cmp` and `blink.cmp`
+- 🔧 Works with `nvim-cmp`, `blink.cmp`, and Vim's built-in `completefunc`
 - ⚡ Fast and lightweight
 - 🎯 Only activates for C# files
 
@@ -28,8 +28,9 @@ When you type `namespace` in a C# file, the plugin:
   ft = "cs",
   dependencies = { "hrsh7th/nvim-cmp" },
   config = function()
-    require("csharp-namespace").setup()
-    
+    local cfg = require("csharp-namespace")
+    cfg.setup({ nvim_cmp = true })
+
     local cmp = require("cmp")
     local config = cmp.get_config()
     table.insert(config.sources, {
@@ -38,6 +39,20 @@ When you type `namespace` in a C# file, the plugin:
       priority = 10000,
     })
     cmp.setup(config)
+  end,
+}
+```
+
+### Using with Vim's built-in completefunc
+
+No completion plugin required. Uses `<C-x><C-u>` for omni-completion.
+
+```lua
+{
+  "markchristianlacap/csharp-namespace.nvim",
+  ft = "cs",
+  config = function()
+    require("csharp-namespace").setup({ completefunc = true })
   end,
 }
 ```
@@ -78,11 +93,12 @@ If your file is located at `MyProject/Controllers/HomeController.cs` and your pr
 
 ## Configuration
 
-The plugin works out of the box without any configuration. However, you can customize it by passing options to the `setup` function:
+Pass options to `setup()` to enable integrations:
 
 ```lua
 require("csharp-namespace").setup({
-  -- Add any custom options here if needed
+  nvim_cmp = true,      -- Register with nvim-cmp (default: false)
+  completefunc = true,   -- Set up Vim's built-in completefunc (default: false)
 })
 ```
 
@@ -90,7 +106,7 @@ require("csharp-namespace").setup({
 
 - Neovim >= 0.7.0
 - A C# project with `.csproj` files
-- Either `nvim-cmp` or `blink.cmp` installed
+- Either `nvim-cmp`, `blink.cmp`, or no completion plugin (uses built-in `completefunc`)
 
 ## Troubleshooting
 
