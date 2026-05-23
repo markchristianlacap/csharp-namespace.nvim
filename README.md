@@ -4,11 +4,11 @@ A Neovim plugin that provides intelligent C# namespace autocompletion based on y
 
 ## Features
 
-- 🚀 Automatic namespace suggestions based on file location and project structure
-- 📁 Scans `.csproj` files to determine the correct namespace
-- 🔧 Works with `nvim-cmp`, `blink.cmp`, and Vim's built-in `completefunc`
-- ⚡ Fast and lightweight
-- 🎯 Only activates for C# files
+- Automatic namespace suggestions based on file location and project structure
+- Scans `.csproj` files to determine the correct namespace
+- Works with `nvim-cmp`, `blink.cmp`, and Vim's built-in `completefunc`
+- Fast and lightweight
+- Only activates for C# files
 
 ## How It Works
 
@@ -70,7 +70,7 @@ No completion plugin required. Uses `<C-x><C-u>` for omni-completion.
       default = { "csharp_namespace" },
       providers = {
         csharp_namespace = {
-          module = "blink-csharp-namespace",
+          module = "csharp-namespace.completion.blink",
           name = "C# Namespace",
         },
       },
@@ -100,6 +100,19 @@ require("csharp-namespace").setup({
   nvim_cmp = true,      -- Register with nvim-cmp (default: false)
   completefunc = true,   -- Set up Vim's built-in completefunc (default: false)
 })
+```
+
+## Structure
+
+```
+lua/csharp-namespace/
+├── init.lua                  # Entry point / setup orchestrator
+├── source.lua                # Core namespace logic
+├── utils.lua                 # File scanning & string utilities
+└── completion/
+    ├── nvim-cmp.lua          # nvim-cmp adapter
+    ├── blink.lua             # blink.cmp adapter
+    └── completefunc.lua      # Vim built-in completefunc adapter
 ```
 
 ## Requirements

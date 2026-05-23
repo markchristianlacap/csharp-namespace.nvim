@@ -3,11 +3,6 @@ local namespace_src = require("csharp-namespace.source")
 
 local M = {}
 
---- Completefunc for C# namespace completions
---- Called by Vim's insert-mode completion (<C-x><C-u>)
---- @param findstart number 1 to find start column, 0 to return completions
---- @param base string The text from start column to cursor
---- @return integer|table Column number or completion dictionary
 function M.completefunc(findstart, base)
 	if findstart == 1 then
 		local line = vim.api.nvim_get_current_line()

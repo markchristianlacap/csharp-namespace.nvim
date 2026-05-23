@@ -9,7 +9,7 @@ function M.remove_start(original_string, start_to_remove)
 	if not original_string or not start_to_remove then
 		return original_string or ""
 	end
-	
+
 	if original_string:sub(1, #start_to_remove) == start_to_remove then
 		return original_string:sub(#start_to_remove + 1)
 	end
